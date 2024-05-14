@@ -1,7 +1,11 @@
 import re
-pattern = '^[a-z 0-9]+[\._]?[a-z 0-9]+[@]\w+[.]\w{2,3}$'
-user_id = 'aaa@bbb.ccc'
-if re.fullmatch(pattern, user_id):
-    print('valid email')
-else:
-    print('invalid email')
+
+def validate_email(email):
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    if re.match(pattern, email):
+        return True
+    else:
+        return False
+
+email = "aaa@bbb.ccc"
+print(validate_email(email))
