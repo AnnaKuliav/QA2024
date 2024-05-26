@@ -1,16 +1,33 @@
-two_d_list = [['a', 'c', 'e'],
-              ['f', 'b', 'a'],
-              ['a', 'n', 'k'],
-              ['e', 'l', 'i']]
+def sort_columns(matrix):
+    if not matrix:
+        return []
 
-# Создаем пустой список для отсортированных столбцов
-sorted_columns = []
+    num_rows = len(matrix)
+    num_cols = len(matrix[0])
 
-# Перебираем столбцы и сортируем их
-for j in range(len(two_d_list[0])):
-    column = []  # Создаем пустой список для каждого столбца
-    for i in range(len(two_d_list)):
-        column.append(two_d_list[i][j])  # Добавляем элементы столбца в список
-    column.sort()  # Сортируем элементы столбца
-    sorted_columns.append(column)  # Добавляем отсортированный столбец в список
-print()
+    columns = [[] for _ in range(num_cols)]
+
+    for row in matrix:
+        for col_index in range(num_cols):
+            columns[col_index].append(row[col_index])
+
+    for col in columns:
+        col.sort()
+
+    sorted_matrix = [[columns[col_index][row_index] for col_index in range(num_cols)] for row_index in range(num_rows)]
+
+    return sorted_matrix
+
+
+# Example
+matrix = [
+    ['a', 'c', 'e'],
+    ['f', 'b', 'a'],
+    ['a', 'n', 'k'],
+    ['e', 'l', 'i']
+]
+
+sorted_matrix = sort_columns(matrix)
+
+for row in sorted_matrix:
+    print(row)
